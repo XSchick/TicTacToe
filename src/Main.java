@@ -5,7 +5,7 @@ import edu.kit.informatik.Terminal;
  * @xschick
  */
 public class Main {
-    int[] gameBoard = new int[9];
+    String[] gameBoard = new String[9];
     int[] gameplay = new int[9];
 
     public static void main(String[] args) {
@@ -13,7 +13,11 @@ public class Main {
     }
 
     public Main(String[] args) {
+        String winner = null;
         inputGameplay(args);
+        for (int i = 0; i < this.gameplay.length; i++) {
+            playMove(i);
+        }
 
     }
 
@@ -25,7 +29,13 @@ public class Main {
 
     }
 
-    public void playMove() {
+    public void playMove(int m) {
+        if (((m + 1) % 2) != 0) {
+            gameBoard[gameplay[m]] = "X";
+        }
+        if (((m + 1) % 2) == 0) {
+            gameBoard[gameplay[m]] = "O";
+        }
 
     }
 }
