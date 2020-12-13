@@ -1,37 +1,46 @@
 /**
  * @author xschick
- * @version 1.1
+ * @version 1.2
  */
-public class Main {
-    String[] gameBoard = {"-", "-", "-", "-", "-", "-", "-", "-", "-"};
-    int[] gameplay = new int[9];
+public final class Main {
+    private String[] gameBoard = {"-", "-", "-", "-", "-", "-", "-", "-", "-"};
+    private int[] gameplay = new int[9];
 
-    public static void main(String[] args) {
-        new Main(args);
+    private Main(String[] args) {
+        for (int i = 0; i < args.length; i++) {
+            this.gameplay[i] = Integer.parseInt(args[i]);
+        }
     }
 
-    public Main(String[] args) {
+    public void game() {
         String latestPlayer;
         String winner = null;
-        int playMoveNumber = 0;
-
-        inputGameplay(args);
+        int moveNumber = 0;
         for (int i = 0; i < this.gameplay.length; i++) {
             latestPlayer = playMove(i);
             if (checkWin()) {
                 winner = latestPlayer;
-                if (playMoveNumber == 0) {
-                    playMoveNumber = i + 1;
+                if (moveNumber == 0) {
+                    moveNumber = i + 1;
                 }
             }
         }
-        System.out.println(winner + " wins " + playMoveNumber);
+        System.out.println(winner + " wins " + moveNumber);
+    }
+
+    public String playMove(int m) {
+        if (((m + 1) % 2) != 0) {
+            gameBoard[this.gameplay[m]] = "X";
+            return "P1";
+        }
+        if (((m + 1) % 2) == 0) {
+            gameBoard[this.gameplay[m]] = "O";
+            return "P2";
+        }
+        return "undefined";
     }
 
     private boolean checkWin() {
-        /*System.out.println("colums: " + checkColumnsForWin());
-        System.out.println("rows: " + checkRowsForWin());
-        System.out.println("diagonal: " + checkDiagonalForWin());*/
         return (checkColumnsForWin() || checkDiagonalForWin() || checkRowsForWin());
     }
 
@@ -54,33 +63,15 @@ public class Main {
     private boolean checkDiagonalForWin() {
         boolean diaLeft = checkRowsAndColumns(gameBoard[0], gameBoard[4], gameBoard[8]);
         boolean diaRight = checkRowsAndColumns(gameBoard[2], gameBoard[4], gameBoard[6]);
-        if (diaLeft || diaRight) {
-            return true;
-        }
-        return false;
+        return diaLeft || diaRight;
     }
 
     private boolean checkRowsAndColumns(String f1, String f2, String f3) {
         return (((f1 != "-") || (f2 != "-") || (f3 != "-")) && (f1 == f2) && (f2 == f3));
     }
 
-    private void inputGameplay(String[] args) {
-        for (int i = 0; i < args.length; i++) {
-            this.gameplay[i] = Integer.parseInt(args[i]);
-        }
-
-    }
-
-    public String playMove(int m) {
-        String actualPlayer;
-        if (((m + 1) % 2) != 0) {
-            gameBoard[gameplay[m]] = "X";
-            return actualPlayer = "P1";
-        }
-        if (((m + 1) % 2) == 0) {
-            gameBoard[gameplay[m]] = "O";
-            return actualPlayer = "P2";
-        }
-        return actualPlayer = "undefined";
+    public static void main(String[] args) {
+        Main newGame = new Main(args);
+        newGame.game();
     }
 }
