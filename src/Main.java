@@ -1,5 +1,7 @@
 import edu.kit.informatik.*;
 
+import java.util.Arrays;
+
 /**
  * @author xschick
  * @version 1.2
@@ -34,6 +36,7 @@ public final class Main {
                 if (moveNumber == 0) {
                     moveNumber = i + 1;
                 }
+                break;
             }
         }
         Terminal.printLine(winner + " wins " + moveNumber);
@@ -74,7 +77,7 @@ public final class Main {
      * @return true if one player wins a row
      */
     private boolean checkRowsForWin() {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 7; i+=3)
             if (checkRowsAndColumns(gameBoard[i], gameBoard[i + 1], gameBoard[i + 2])) {
                 return true;
             }
