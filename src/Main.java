@@ -1,7 +1,5 @@
 import edu.kit.informatik.*;
 
-import java.util.Arrays;
-
 /**
  * @author xschick
  * @version 1.2
