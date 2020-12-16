@@ -75,7 +75,7 @@ public final class Main {
      * @return true if one player wins a row
      */
     private boolean checkRowsForWin() {
-        for (int i = 0; i < 7; i+=3)
+        for (int i = 0; i < 7; i += 3)
             if (checkRowsAndColumns(gameBoard[i], gameBoard[i + 1], gameBoard[i + 2])) {
                 return true;
             }
