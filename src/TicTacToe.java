@@ -4,7 +4,7 @@ import edu.kit.informatik.*;
  * @author xschick
  * @version 1.2
  */
-public final class Main {
+public final class TicTacToe {
     private String[] gameBoard = {"-", "-", "-", "-", "-", "-", "-", "-", "-"};
     private int[] gameplay = new int[9];
 
@@ -13,7 +13,7 @@ public final class Main {
      *
      * @param args the gameplay
      */
-    private Main(String[] args) {
+    private TicTacToe(String[] args) {
         for (int i = 0; i < args.length; i++) {
             this.gameplay[i] = Integer.parseInt(args[i]);
         }
@@ -124,7 +124,7 @@ public final class Main {
      * @param args the movement numbers
      */
     public static void main(String[] args) {
-        Main newGame = new Main(args);
+        TicTacToe newGame = new TicTacToe(args);
         newGame.game();
     }
 }
